@@ -38,6 +38,12 @@ function checkReview(text: string): void {
       `entry must be ${MIN_CHARS} to ${MAX_CHARS} characters, got ${text.length}`,
     );
   }
+  // The judge's first criterion is that the line reviews the entrant's
+  // own Monday rather than joking about something else, so the review
+  // must name Monday outright.
+  if (!/\bMonday\b/.test(text)) {
+    throw new Error("entry must name Monday");
+  }
 }
 
 function main(): void {
